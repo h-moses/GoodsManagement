@@ -2,6 +2,7 @@ package com.anonymity.goodsmanagement.controller;
 
 import com.anonymity.goodsmanagement.entity.User;
 import com.anonymity.goodsmanagement.service.UserService;
+import com.anonymity.goodsmanagement.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,21 +25,26 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public User login(@RequestParam("userSn") String userSn, @RequestParam("userPwd") String userPwd, HttpSession session) {
+    public Result login(@RequestParam("userSn") String userSn, @RequestParam("userPwd") String userPwd, HttpSession session) {
         User user = new User(userSn, userPwd);
         User online = userService.login(user);
         if (user.equals(online)) {
             session.setAttribute("userSn", userSn);
-            return user;
+            return new Result(Result.SUCCESS, "登录成功", null);
         } else {
-            return null;
+            return new Result(Result.FAILURE, "登录失败", null);
         }
     }
 
     @RequestMapping("/register")
-    public User register(@RequestParam("userSn") String userSn, @RequestParam("userPwd") String userPwd) {
+    public Result register(@RequestParam("userSn") String userSn, @RequestParam("userPwd") String userPwd) {
         User user = new User(userSn, userPwd);
         userService.register(user);
-        return userService.login(user);
+        User login = userService.login(user);
+        if (login != null) {
+            return new Result(Result.SUCCESS, "注册成功", null);
+        } else {
+            return new Result(Result.FAILURE, "注册失败", null);
+        }
     }
 }

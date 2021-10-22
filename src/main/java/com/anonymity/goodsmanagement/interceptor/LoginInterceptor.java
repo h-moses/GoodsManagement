@@ -14,6 +14,9 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         Object userSn = session.getAttribute("userSn");
+        if (userSn == null) {
+            response.setStatus(HttpServletResponse.SC_REQUEST_TIMEOUT);
+        }
         return userSn != null;
     }
 
