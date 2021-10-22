@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author anonymity
  */
@@ -22,10 +24,11 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public User login(@RequestParam("userSn") String userSn, @RequestParam("userPwd") String userPwd) {
+    public User login(@RequestParam("userSn") String userSn, @RequestParam("userPwd") String userPwd, HttpSession session) {
         User user = new User(userSn, userPwd);
         User online = userService.login(user);
         if (user.equals(online)) {
+            session.setAttribute("userSn",userSn);
             return user;
         } else {
             return null;
