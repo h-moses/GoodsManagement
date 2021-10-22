@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anonymity.goodsmanagement.dao.GoodsDao">
+    <select id="queryGoods" resultType="Goods">
+        select *
+        from goods
+        where goodsSn = #{goodsSn};
+    </select>
+
+    <insert id="addGoods">
+        insert into goods(goodsSn, goodsName, shopPrice, goodsStock, goodsUnit, saleNum)
+        VALUES (#{goods.goodsSn}, #{goods.goodsName}, #{goods.shopPrice}, #{goods.goodsStock}, #{goods.goodsUnit},
+                #{goods.saleNum});
+    </insert>
+
+    <delete id="deleteGoods">
+        delete from goods
+        <choose>
+            <when test="goodsSn != null and goodsSn.length > 0">
+                <where>
+                    <foreach collection="goodsSn" item="sn" separator="or">
+                        goodsSn = #{sn}
+                    </foreach>
+                </where>
+            </when>
+            <otherwise>
+                where 1=2
+            </otherwise>
+        </choose>
+    </delete>
+
+    <update id="updateGoods">
+        update goods set
+        <trim suffixOverrides=",">
+            <if test="#{goods.goodsSn} != null">
+                goodsSn = #{goods.goodsSn},
+            </if>
+            <if test="#{goods.goodsName} != null">
+                goodsName = #{goods.goodsName},
+            </if>
+            <if test="#{goods.shopPrice} != null">
+                shopPrice = #{goods.shopPrice},
+            </if>
+            <if test="#{goods.goodsStock} != null">
+                goodsStock = #{goods.goodsStock},
+            </if>
+            <if test="#{goods.goodsUnit} != null">
+                goodsUnit = #{goods.goodsUnit},
+            </if>
+            <if test="#{goods.saleNum} != null">
+                saleNum = #{goods.saleNum}
+            </if>
+        </trim>
+        where goodsId = #{goods.goodsId};
+    </update>
+</mapper>

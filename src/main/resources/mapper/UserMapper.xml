@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anonymity.goodsmanagement.dao.UserDao">
+    <select id="queryUser" resultType="User">
+        select *
+        from user
+        where userSn = #{user.userSn}
+          and userPwd = #{user.userPwd};
+    </select>
+
+    <insert id="insertUser">
+        insert into user(userSn, userPwd) value (#{user.userSn}, #{user.userPwd});
+    </insert>
+</mapper>
