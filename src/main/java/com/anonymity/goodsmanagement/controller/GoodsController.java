@@ -2,10 +2,15 @@ package com.anonymity.goodsmanagement.controller;
 
 import com.anonymity.goodsmanagement.entity.Goods;
 import com.anonymity.goodsmanagement.service.GoodsService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author anonymity
@@ -61,9 +66,12 @@ public class GoodsController {
      *
      * @return 商品信息
      */
-    @RequestMapping(value = "/{goodsSn}", method = {RequestMethod.GET})
-    public Goods getGoods(@PathVariable("goodsSn") String goodsSn) {
-        return goodsService.getGoods(goodsSn);
+    @RequestMapping(method = {RequestMethod.GET})
+    public List<Goods> getGoods(String goodsName, Integer pageNum, Integer pageSize) {
+        if (pageNum != null && pageSize != null) {
+            PageHelper.startPage(pageNum, pageSize);
+        }
+        return goodsService.getGoods(goodsName);
     }
 
 }

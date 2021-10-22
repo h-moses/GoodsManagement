@@ -4,12 +4,14 @@ import com.anonymity.goodsmanagement.entity.Goods;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author anonymity
  */
 @Repository
 public interface GoodsDao {
-    Goods queryGoods(@Param("goodsSn") String goodsSn);
+    List<Goods> queryGoods(@Param("goodsName") String goodsName);
 
     void addGoods(@Param("goods") Goods goods);
 

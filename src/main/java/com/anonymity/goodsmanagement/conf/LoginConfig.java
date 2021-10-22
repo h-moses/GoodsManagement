@@ -1,4 +1,4 @@
-package com.anonymity.goodsmanagement.config;
+package com.anonymity.goodsmanagement.conf;
 
 import com.anonymity.goodsmanagement.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;

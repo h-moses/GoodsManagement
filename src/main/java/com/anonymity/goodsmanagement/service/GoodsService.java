@@ -2,12 +2,14 @@ package com.anonymity.goodsmanagement.service;
 
 import com.anonymity.goodsmanagement.entity.Goods;
 
+import java.util.List;
+
 /**
  * @author anonymity
  */
 public interface GoodsService {
 
-    Goods getGoods(String goodsSn);
+    List<Goods> getGoods(String goodsName);
 
     void addGoods(Goods goods);
 

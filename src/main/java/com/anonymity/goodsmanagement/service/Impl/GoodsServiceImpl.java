@@ -6,6 +6,8 @@ import com.anonymity.goodsmanagement.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author anonymity
  */
@@ -20,8 +22,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public Goods getGoods(String goodsSn) {
-        return goodsDao.queryGoods(goodsSn);
+    public List<Goods> getGoods(String goodsName) {
+        return goodsDao.queryGoods(goodsName);
     }
 
     @Override

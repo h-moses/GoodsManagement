@@ -6,13 +6,13 @@
     <select id="queryGoods" resultType="Goods">
         select *
         from goods
-        where goodsSn = #{goodsSn};
+        where goodsName LIKE concat('%', #{goodsName}, '%')
     </select>
 
     <insert id="addGoods">
         insert into goods(goodsSn, goodsName, shopPrice, goodsStock, goodsUnit, saleNum)
         VALUES (#{goods.goodsSn}, #{goods.goodsName}, #{goods.shopPrice}, #{goods.goodsStock}, #{goods.goodsUnit},
-                #{goods.saleNum});
+                #{goods.saleNum})
     </insert>
 
     <delete id="deleteGoods">
@@ -53,6 +53,6 @@
                 saleNum = #{goods.saleNum}
             </if>
         </trim>
-        where goodsId = #{goods.goodsId};
+        where goodsId = #{goods.goodsId}
     </update>
 </mapper>
