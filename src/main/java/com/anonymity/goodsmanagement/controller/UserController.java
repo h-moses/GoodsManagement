@@ -28,7 +28,7 @@ public class UserController {
         User user = new User(userSn, userPwd);
         User online = userService.login(user);
         if (user.equals(online)) {
-            session.setAttribute("userSn", userSn);
+            session.setAttribute("userSn",userSn);
             return user;
         } else {
             return null;
