@@ -30,7 +30,7 @@ public class UserController {
         User online = userService.login(user);
         if (user.equals(online)) {
             session.setAttribute("userSn", userSn);
-            return new Result(Result.SUCCESS, "登录成功", null);
+            return new Result(Result.SUCCESS, "登录成功", online);
         } else {
             return new Result(Result.FAILURE, "登录失败", null);
         }
@@ -42,7 +42,7 @@ public class UserController {
         userService.register(user);
         User login = userService.login(user);
         if (login != null) {
-            return new Result(Result.SUCCESS, "注册成功", null);
+            return new Result(Result.SUCCESS, "注册成功", login);
         } else {
             return new Result(Result.FAILURE, "注册失败", null);
         }
