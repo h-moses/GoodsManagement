@@ -33,8 +33,11 @@ public class GoodsController {
     @RequestMapping(method = {RequestMethod.POST})
     public Result addGoods(Goods goods) {
         Integer result = goodsService.addGoods(goods);
-        System.out.println(result);
-        return new Result(Result.SUCCESS, "添加成功", result);
+        if (result > 0) {
+            return new Result(Result.SUCCESS, "添加成功", result);
+        } else {
+            return new Result(Result.FAILURE, "添加失败", result);
+        }
     }
 
     /**
@@ -45,8 +48,11 @@ public class GoodsController {
     @RequestMapping(method = {RequestMethod.PUT})
     public Result updateGoods(Goods goods) {
         Integer result = goodsService.updateGoods(goods);
-        System.out.println(result);
-        return new Result(Result.SUCCESS, "更新成功", result);
+        if (result > 0) {
+            return new Result(Result.SUCCESS, "更新成功", result);
+        } else {
+            return new Result(Result.FAILURE, "更新失败", result);
+        }
     }
 
     /**
@@ -56,8 +62,12 @@ public class GoodsController {
      */
     @RequestMapping(method = {RequestMethod.DELETE})
     public Result deleteGoods(@RequestParam("goodsSn") String... goodsSn) {
-        goodsService.deleteGoods(goodsSn);
-        return new Result(Result.SUCCESS, "删除成功", null);
+        Integer result = goodsService.deleteGoods(goodsSn);
+        if (result > 0) {
+            return new Result(Result.SUCCESS, "删除成功", result);
+        } else {
+            return new Result(Result.FAILURE, "删除失败", result);
+        }
     }
 
     /**
