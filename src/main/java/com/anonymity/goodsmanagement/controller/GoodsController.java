@@ -32,8 +32,9 @@ public class GoodsController {
      */
     @RequestMapping(method = {RequestMethod.POST})
     public Result addGoods(Goods goods) {
-        goodsService.addGoods(goods);
-        return new Result(Result.SUCCESS, "添加成功", null);
+        Integer result = goodsService.addGoods(goods);
+        System.out.println(result);
+        return new Result(Result.SUCCESS, "添加成功", result);
     }
 
     /**
@@ -43,8 +44,9 @@ public class GoodsController {
      */
     @RequestMapping(method = {RequestMethod.PUT})
     public Result updateGoods(Goods goods) {
-        goodsService.updateGoods(goods);
-        return new Result(Result.SUCCESS, "更新成功", null);
+        Integer result = goodsService.updateGoods(goods);
+        System.out.println(result);
+        return new Result(Result.SUCCESS, "更新成功", result);
     }
 
     /**

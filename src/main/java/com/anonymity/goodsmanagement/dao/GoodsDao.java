@@ -13,9 +13,9 @@ import java.util.List;
 public interface GoodsDao {
     List<Goods> queryGoods(@Param("goodsName") String goodsName);
 
-    void addGoods(@Param("goods") Goods goods);
+    Integer addGoods(@Param("goods") Goods goods);
 
-    void deleteGoods(@Param("goodsSn") String... goodsSn);
+    Integer deleteGoods(@Param("goodsSn") String... goodsSn);
 
-    void updateGoods(@Param("goods") Goods goods);
+    Integer updateGoods(@Param("goods") Goods goods);
 }

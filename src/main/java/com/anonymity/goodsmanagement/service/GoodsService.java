@@ -11,9 +11,9 @@ public interface GoodsService {
 
     List<Goods> getGoods(String goodsName);
 
-    void addGoods(Goods goods);
+    Integer addGoods(Goods goods);
 
-    void deleteGoods(String... goodsSn);
+    Integer deleteGoods(String... goodsSn);
 
-    void updateGoods(Goods goods);
+    Integer updateGoods(Goods goods);
 }

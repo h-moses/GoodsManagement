@@ -27,17 +27,17 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public void addGoods(Goods goods) {
-        goodsDao.addGoods(goods);
+    public Integer addGoods(Goods goods) {
+        return goodsDao.addGoods(goods);
     }
 
     @Override
-    public void deleteGoods(String... goodsSn) {
-        goodsDao.deleteGoods(goodsSn);
+    public Integer deleteGoods(String... goodsSn) {
+        return goodsDao.deleteGoods(goodsSn);
     }
 
     @Override
-    public void updateGoods(Goods goods) {
-        goodsDao.updateGoods(goods);
+    public Integer updateGoods(Goods goods) {
+        return goodsDao.updateGoods(goods);
     }
 }
